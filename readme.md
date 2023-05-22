@@ -36,3 +36,5 @@ NPM"
 
 "This command start app"
 
+### `npm run migrate`
+""
