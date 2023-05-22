@@ -53,7 +53,7 @@ export async function updateCategoryController(
     return reply.code(200).send(updatedCategory);
   } catch (error) {
     console.log(error);
-    return reply.code(500).send({ message: 'Kategori güncellenirken bir hata oluştu.' });
+    return reply.code(500).send({ message: 'An error occurred while updating the category.' });
   }
 }
 
@@ -73,7 +73,7 @@ export async function deleteCategoryController(
     return reply.code(204).send();
   } catch (error) {
     console.log(error);
-    return reply.code(500).send({ message: 'Kategori silinirken bir hata oluştu.' });
+    return reply.code(500).send({ message: 'An error occurred while deleting the category.' });
   }
 }
 

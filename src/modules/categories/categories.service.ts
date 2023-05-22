@@ -28,7 +28,7 @@ export async function updateCategoryHandler(categoryId: number, input: createCat
       });
   
       if (!existingCategory) {
-        throw new Error('Kategori bulunamadı.');
+        throw new Error('Category not found.');
       }
   
       const updatedCategory = await prisma.categories.update({
@@ -38,7 +38,7 @@ export async function updateCategoryHandler(categoryId: number, input: createCat
   
       return updatedCategory;
     } catch (error) {
-      throw new Error('Kategori güncellenirken bir hata oluştu.');
+      throw new Error('An error occurred while updating the category.');
     }
   }
 
@@ -47,8 +47,17 @@ export async function updateCategoryHandler(categoryId: number, input: createCat
     const deletedCategory = await prisma.categories.delete({
       where: { id: categoryId },
     });
+    
+    try {
+      return deletedCategory;
+    }catch (error:any
+    )
+     {
+      return {
+        success: false,
+        message: "An error occurred while deleting the category.",
+        error: error.message,
+      };
+    }
   
-    return deletedCategory;
   }
-  
-  

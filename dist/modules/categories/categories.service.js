@@ -42,7 +42,7 @@ function updateCategoryHandler(categoryId, input) {
                 where: { id: categoryId },
             });
             if (!existingCategory) {
-                throw new Error('Kategori bulunamadı.');
+                throw new Error('Category not found.');
             }
             const updatedCategory = yield prisma_1.default.categories.update({
                 where: { id: categoryId },
@@ -51,7 +51,7 @@ function updateCategoryHandler(categoryId, input) {
             return updatedCategory;
         }
         catch (error) {
-            throw new Error('Kategori güncellenirken bir hata oluştu.');
+            throw new Error('An error occurred while updating the category.');
         }
     });
 }
@@ -61,7 +61,16 @@ function deleteCategoryHandler(categoryId) {
         const deletedCategory = yield prisma_1.default.categories.delete({
             where: { id: categoryId },
         });
-        return deletedCategory;
+        try {
+            return deletedCategory;
+        }
+        catch (error) {
+            return {
+                success: false,
+                message: "An error occurred while deleting the category.",
+                error: error.message,
+            };
+        }
     });
 }
 exports.deleteCategoryHandler = deleteCategoryHandler;

@@ -25,4 +25,6 @@ model Listings {
   category_id Int
   picture String?
   category    Categories @relation(fields: [category_id], references: [id])
+
+  @@map(name:"listings")
 }
